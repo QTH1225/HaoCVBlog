@@ -1,2 +1,4 @@
-- **Programming Languages:** Python, MATLAB, LaTeX
-- **Professional Interests:** Engineering, simulation, and technical writing
+- **Modeling and Simulation:** MATLAB, ANSYS, COMSOL
+- **Engineering Drawing:** AutoCAD, Tianzheng CAD
+- **Technical Writing:** LaTeX, Markdown
+- **Research Interests:** Cement-based supercapacitors and batteries for structural energy storage

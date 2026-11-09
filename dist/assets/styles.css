@@ -108,7 +108,8 @@ p { margin: 7px 0; }
 .award-list { margin: 3px 0; }
 .award-list li { margin: 3px 0; }
 .award-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px 18px; font-style: italic; }
-.award-name { min-width: 0; }
+.award-name { min-width: 0; text-wrap: pretty; }
+.entry-sub > :first-child { text-wrap: pretty; }
 .publication-entry .entry-title { font-size: 16px; font-weight: 700; line-height: 1.4; }
 .publication-authors { margin: 2px 0; font-size: 16px; }
 .publication-venue { margin: 2px 0; font-size: 16px; }

@@ -8,7 +8,7 @@ const normalize = text => text.replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n');
 const fail = (file, message) => { throw new Error(`${file}: ${message}`); };
 const plain = text => (md.parseInline(text, {})[0]?.children || []).map(token => token.type === 'softbreak' ? ' ' : token.content).join('');
 
-const homeSections = ['education', 'skills', 'projects', 'work-experience', 'honors-and-awards', 'publications', 'extracurricular-activities', 'notes'];
+const homeSections = ['education', 'skills', 'projects', 'open-source-projects', 'work-experience', 'honors-and-awards', 'publications', 'extracurricular-activities', 'notes'];
 
 export function parseHomeOrder(body, file = 'content/home.md') {
   const order = [];
@@ -21,8 +21,6 @@ export function parseHomeOrder(body, file = 'content/home.md') {
     if (order.includes(id)) fail(file, `Duplicate homepage section "${id}"`);
     order.push(id);
   }
-  const missing = homeSections.filter(id => !order.includes(id));
-  if (missing.length) fail(file, `Missing homepage sections: ${missing.join(', ')}; include every section exactly once`);
   return order;
 }
 
@@ -111,11 +109,12 @@ function awardTable(body, file) {
 }
 
 export function parseAwards(body, file = 'honors-and-awards.md') {
-  const result = { honors: [], awards: [] };
+  const result = { scholarships: [], honors: [], awards: [] };
+  const headings = { scholarships: 'scholarships', honors: 'honors', 'competition awards': 'awards', awards: 'awards' };
   const seen = new Set();
   for (const section of documentSections(body, file)) {
-    const key = section.title.toLowerCase();
-    if (!['honors', 'awards'].includes(key) || seen.has(key)) fail(file, 'Use each heading once: ## Honors and ## Awards');
+    const key = headings[section.title.toLowerCase()];
+    if (!key || seen.has(key)) fail(file, 'Use each heading once: ## Scholarships, ## Honors, and ## Competition Awards (## Awards is also accepted)');
     seen.add(key);
     result[key] = awardTable(section.body, file);
   }
@@ -183,5 +182,5 @@ export async function loadSiteContent(directory) {
     skills: parseSkills(await read('skills.md')),
     ...parseAwards(await read('honors-and-awards.md')),
     publications: parsePublications(await read('publications.md')),
-    projects: await records('projects'), workExperience: await records('work-experience'), activities: await records('extracurricular-activities') };
+    projects: await records('projects'), openSourceProjects: await records('open-source-projects'), workExperience: await records('work-experience'), activities: await records('extracurricular-activities') };
 }

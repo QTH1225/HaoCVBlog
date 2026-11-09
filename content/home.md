@@ -1,8 +1,7 @@
 - education
 - skills
 - projects
-- work-experience
+- open-source-projects
 - honors-and-awards
 - publications
-- extracurricular-activities
 - notes

@@ -1,10 +1,10 @@
 // Shared English headings and interface text.
 export const labels = {
   htmlLang: 'en', resume: 'Resume', education: 'EDUCATION', skills: 'TECHNICAL SKILLS',
-  projects: 'ACADEMIC PROJECTS', projectList: 'PROJECTS', work: 'WORK EXPERIENCE',
+  projects: 'RESEARCH PROJECTS', projectList: 'RESEARCH PROJECTS', openSourceProjects: 'OPEN SOURCE PROJECTS', work: 'WORK EXPERIENCE',
   awards: 'HONORS AND AWARDS', awardsBreadcrumb: 'Honors and Awards', publications: 'PUBLICATIONS',
   publicationsBreadcrumb: 'Publications', activities: 'EXTRACURRICULAR ACTIVITIES',
-  notes: 'NOTES', notesTitle: 'Notes', honorsLabel: 'HONORS:', awardsLabel: 'AWARDS:', coreCourses: 'Core Courses:',
+  notes: 'NOTES', notesTitle: 'Notes', scholarshipsLabel: 'SCHOLARSHIPS:', honorsLabel: 'HONORS:', awardsLabel: 'COMPETITION AWARDS:', coreCourses: 'Core Courses:',
   viewAll: 'View all', backResume: 'Back to résumé', backTop: 'Back to top',
   backTo: label => `Back to ${label.toLowerCase()}`,
   projectNotes: 'Project notes', experienceDetails: 'Experience details', activityDetails: 'Activity details',

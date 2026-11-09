@@ -56,42 +56,43 @@ npm run dev
 
 | 内容 | 维护文件 |
 | --- | --- |
-| 主页栏目顺序 | [content/home.md](content/home.md) |
+| 主页显示栏目与顺序 | [content/home.md](content/home.md) |
 | 姓名、电话、邮箱和网站链接 | [content/profile.md](content/profile.md) |
 | 教育背景、课程 | [content/education.md](content/education.md) |
 | 技能 | [content/skills.md](content/skills.md) |
 | 荣誉与竞赛奖项 | [content/honors-and-awards.md](content/honors-and-awards.md) |
 | 论文 | [content/publications.md](content/publications.md) |
-| 项目 | `content/projects/`，每个项目一份 Markdown |
+| 科研项目 | `content/projects/`，每个项目一份 Markdown |
+| 开源项目 | `content/open-source-projects/`，每个项目一份 Markdown |
 | 工作经历 | `content/work-experience/`，每段经历一份 Markdown |
 | 课外活动 | `content/extracurricular-activities/`，每项活动一份 Markdown |
 | 笔记 | `notes/`，每篇一份 Markdown |
 
 **不要直接修改 `dist/`**，每次构建都会替换整个生成目录，清理旧页面、笔记原文和资源。请将内容及附件保存在对应的源目录中。
 
-### 主页栏目顺序
+### 主页显示栏目与顺序
 
-编辑 [content/home.md](content/home.md)，上下移动完整的一行，即可调整主页各栏目的先后顺序：
+编辑 [content/home.md](content/home.md)，只列出需要显示的栏目。删除一行即可移除对应的主页栏目，加回即可恢复，上下移动完整行即可排序：
 
 ```markdown
 - education
 - skills
 - projects
-- work-experience
+- open-source-projects
 - honors-and-awards
 - publications
-- extracurricular-activities
 - notes
 ```
 
-例如，把 `- publications` 移到 `- skills` 前面，论文栏目就会排在技能之前。八个标识必须各出现一次，保留上面的英文名称，可以插入空行。重复、拼错或漏写栏目会使构建停止，报错会指明 `content/home.md`，并保留上一次成功生成的网站。更新本次构建脚本后，请重启一次预览服务；之后保存 `home.md` 会自动构建，刷新浏览器即可查看。这里控制的是主页栏目顺序；项目、工作经历、课外活动各篇文件中的 `order` 控制对应栏目内部的条目顺序。分类与详情页布局不受影响，主页 NOTES 无论放在哪里，打印时仍会隐藏。
+例如，把 `- publications` 移到 `- skills` 前面，论文栏目就会排在技能之前。`projects` 显示科研项目，`open-source-projects` 显示开源项目；需要工作经历或课外活动时，可分别加回 `- work-experience`、`- extracurricular-activities`。未列出的栏目不生成到主页，但对应内容及分类、详情页仍保留。可以插入空行，也可以清空列表；重复或未知标识会使构建停止，报错会指明 `content/home.md`，并保留上一次成功生成的网站。修改预览服务代码后需重启；之后保存 `home.md` 会自动构建，刷新浏览器即可查看。各篇文件中的 `order` 控制栏目内部的条目顺序；主页 NOTES 无论放在哪里，打印时仍会隐藏。
 
 ## 项目、经历和活动
 
-可以先修改 [现有项目示例](content/projects/conductive-concrete-example.md)，或者复制模板：
+可以先修改 [公路碳足迹项目](content/projects/highway-carbon-footprint.md)，或者复制模板：
 
 ```powershell
 Copy-Item templates/project.md content/projects/my-project.md
+Copy-Item templates/project.md content/open-source-projects/my-open-source-project.md
 Copy-Item templates/work-experience.md content/work-experience/my-role.md
 Copy-Item templates/activity.md content/extracurricular-activities/my-activity.md
 ```
@@ -191,23 +192,29 @@ dates: 09 2021 - 06 2025
 
 ### 荣誉与奖项
 
-在 `content/honors-and-awards.md` 的两个章节中填写表格：
+在 `content/honors-and-awards.md` 的三个章节中填写表格：
 
 ```markdown
-## Honors
+## Scholarships
 
 | Name | Date |
 | --- | --- |
 | First-class Scholarship | Nov. 2024 |
 
-## Awards
+## Honors
+
+| Name | Date |
+| --- | --- |
+| Outstanding Student | Dec. 2024 |
+
+## Competition Awards
 
 | Name | Date |
 | --- | --- |
 | Competition Award | May 2024 |
 ```
 
-保留 `Name` 和 `Date` 两列表头，按行增删。名称中的竖线写作 `\|`。主页默认每类最多显示前五条，不足五条则全部显示，View all 展示完整列表。
+保留 `Name` 和 `Date` 两列表头，按行增删。名称中的竖线写作 `\|`。奖学金、荣誉、竞赛奖项分组维护，优秀毕业设计等学术荣誉放入 Honors。主页每组最多显示前三条，View all 展示完整列表；旧的 `## Awards` 标题仍可作为 `## Competition Awards` 的别名使用。
 
 ### 论文
 

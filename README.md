@@ -55,42 +55,43 @@ Start with the [Chinese content editing guide](content/README.md), or edit the f
 
 | Content | Source |
 | --- | --- |
-| Homepage section order | [content/home.md](content/home.md) |
+| Homepage section visibility and order | [content/home.md](content/home.md) |
 | Name, phone, email, and profile links | [content/profile.md](content/profile.md) |
 | Education and courses | [content/education.md](content/education.md) |
 | Skills | [content/skills.md](content/skills.md) |
 | Honors and competition awards | [content/honors-and-awards.md](content/honors-and-awards.md) |
 | Publications | [content/publications.md](content/publications.md) |
-| Projects | One Markdown file per project in `content/projects/` |
+| Research projects | One Markdown file per project in `content/projects/` |
+| Open source projects | One Markdown file per project in `content/open-source-projects/` |
 | Work experience | One Markdown file per role in `content/work-experience/` |
 | Extracurricular activities | One Markdown file per activity in `content/extracurricular-activities/` |
 | Notes | One Markdown file per note in `notes/` |
 
 **Do not edit `dist/` directly.** Each build replaces this generated directory, including old pages, note sources, and assets. Store content and attachments in their source directories.
 
-### Homepage Section Order
+### Homepage Sections and Order
 
-Edit [content/home.md](content/home.md). Move an entire list line up or down to change the order of the homepage sections:
+Edit [content/home.md](content/home.md). List only the sections to display, in the desired order. Remove a line to hide a section, add it back to restore it, or move it to change its position:
 
 ```markdown
 - education
 - skills
 - projects
-- work-experience
+- open-source-projects
 - honors-and-awards
 - publications
-- extracurricular-activities
 - notes
 ```
 
-For example, move `- publications` above `- skills` to show publications before skills. Keep all eight identifiers exactly once, using the names above; blank lines are allowed. Duplicate, unknown, or missing sections stop the build with a `content/home.md` error and preserve the last working output. Restart the preview server once after updating the build scripts, then edits to `home.md` trigger a rebuild; refresh the browser to view them. This controls homepage section order; the `order` field in individual project, work experience, and activity files controls entries within those sections. Category and detail page layouts stay the same, and the homepage Notes section stays hidden when printing wherever it is placed.
+For example, move `- publications` above `- skills` to show publications before skills. `projects` displays research projects, while `open-source-projects` displays open source projects. Optional identifiers `work-experience` and `extracurricular-activities` can be added when needed. Omitted sections are not rendered on the homepage; their content and category/detail pages remain available. Blank lines and an empty list are allowed. Duplicate or unknown identifiers stop the build with a `content/home.md` error and preserve the last working output. Restart the preview server after changing its implementation; subsequent edits to `home.md` trigger a rebuild. The `order` field in each record controls entries within its category. Homepage Notes remain hidden when printing.
 
 ## Projects, Experience, and Activities
 
-Try editing the [existing project example](content/projects/conductive-concrete-example.md), or copy a template:
+Try editing the [highway carbon footprint project](content/projects/highway-carbon-footprint.md), or copy a template:
 
 ```powershell
 Copy-Item templates/project.md content/projects/my-project.md
+Copy-Item templates/project.md content/open-source-projects/my-open-source-project.md
 Copy-Item templates/work-experience.md content/work-experience/my-role.md
 Copy-Item templates/activity.md content/extracurricular-activities/my-activity.md
 ```
@@ -190,23 +191,29 @@ Skills are bullet points in `content/skills.md`:
 
 ### Honors and Awards
 
-Edit the two tables in `content/honors-and-awards.md`:
+Edit the three tables in `content/honors-and-awards.md`:
 
 ```markdown
-## Honors
+## Scholarships
 
 | Name | Date |
 | --- | --- |
 | First-class Scholarship | Nov. 2024 |
 
-## Awards
+## Honors
+
+| Name | Date |
+| --- | --- |
+| Outstanding Student | Dec. 2024 |
+
+## Competition Awards
 
 | Name | Date |
 | --- | --- |
 | Competition Award | May 2024 |
 ```
 
-Keep the `Name` and `Date` headers, and add or remove rows. Escape a vertical bar in a name as `\|`. The homepage shows up to five entries in each group; View all shows the complete lists.
+Keep the `Name` and `Date` headers, and add or remove rows. Escape a vertical bar in a name as `\|`. Scholarships, honors, and competition awards are separate groups. Thesis distinctions belong under Honors. The homepage shows up to three entries in each group; View all shows the complete lists. The old `## Awards` heading remains supported as an alias for `## Competition Awards`.
 
 ### Publications
 

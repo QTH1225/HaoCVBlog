@@ -1,0 +1,243 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - heading [level=1] [ref=e5]:
+        - link "Tianhao Qin, back to résumé" [ref=e6] [cursor=pointer]:
+          - /url: index.html
+          - text: Tianhao Qin
+      - generic "Contact information" [ref=e7]:
+        - generic [ref=e8]:
+          - link "tianhaoqin@qq.com" [ref=e10] [cursor=pointer]:
+            - /url: mailto:tianhaoqin@qq.com
+          - generic [aria-hidden] [ref=e11]: "-"
+          - link "tianhao.blog" [ref=e13] [cursor=pointer]:
+            - /url: https://tianhao.blog/
+          - generic [aria-hidden] [ref=e14]: "-"
+          - link "GitHub" [ref=e16] [cursor=pointer]:
+            - /url: https://github.com/QTH1225
+    - main [ref=e17]:
+      - generic [ref=e18]:
+        - heading "EDUCATION" [level=2] [ref=e19]
+        - article [ref=e20]:
+          - generic [ref=e21]:
+            - heading "China University of Mining and Technology" [level=3] [ref=e22]
+            - generic [ref=e23]: Xuzhou, China
+          - generic [ref=e24]:
+            - generic [ref=e25]: Master's Student
+            - generic [ref=e26]: Sep. 2025 - Present
+        - article [ref=e27]:
+          - generic [ref=e28]:
+            - heading "China University of Mining and Technology" [level=3] [ref=e29]
+            - generic [ref=e30]: Xuzhou, China
+          - generic [ref=e31]:
+            - generic [ref=e32]: Bachelor's Degree in Civil Engineering
+            - generic [ref=e33]: Sep. 2021 - Jun. 2025
+          - generic [ref=e34]:
+            - paragraph [ref=e35]: "Core Courses:"
+            - paragraph [ref=e36]: "Selected courses: Reinforced Concrete Design (96/100), Soil Mechanics (94/100), Construction Methods (94/100), Principles of Structural Design I (93/100)"
+      - generic [ref=e37]:
+        - heading "TECHNICAL SKILLS" [level=2] [ref=e38]
+        - paragraph [ref=e39]:
+          - strong [ref=e40]: "Modeling and Simulation:"
+          - text: MATLAB, ANSYS, COMSOL
+        - paragraph [ref=e41]:
+          - strong [ref=e42]: "Engineering Drawing:"
+          - text: AutoCAD, Tianzheng CAD
+        - paragraph [ref=e43]:
+          - strong [ref=e44]: "Technical Writing:"
+          - generic "LaTeX" [ref=e45]: LATEX
+          - text: ", Markdown"
+        - paragraph [ref=e46]:
+          - strong [ref=e47]: "Research Interests:"
+          - text: Cement-based supercapacitors and batteries for structural energy storage
+      - generic [ref=e48]:
+        - heading "ACADEMIC PROJECTS View all academic projects" [level=2] [ref=e49]:
+          - generic [ref=e50]: ACADEMIC PROJECTS
+          - link "View all academic projects" [ref=e51] [cursor=pointer]:
+            - /url: projects/index.html
+            - text: View all →
+        - article [ref=e52]:
+          - heading [level=3] [ref=e53]:
+            - link "Highway Construction Carbon Footprint" [ref=e54] [cursor=pointer]:
+              - /url: projects/highway-carbon-footprint/index.html
+          - generic [ref=e55]:
+            - generic [ref=e56]: Project Lead · Anqing Expressway, Section S1
+            - generic [ref=e57]: Jul. 2025 - Nov. 2025
+          - list [ref=e58]:
+            - listitem [ref=e59]: Modeled and assessed cradle-to-gate emissions and explored strategies for lower-carbon highway construction.
+        - article [ref=e60]:
+          - heading [level=3] [ref=e61]:
+            - link "ICCP–TRC Structural Design and Durability" [ref=e62] [cursor=pointer]:
+              - /url: projects/iccp-trc-structural-design/index.html
+          - generic [ref=e63]:
+            - generic [ref=e64]: Project Lead · Undergraduate Thesis
+            - generic [ref=e65]: Sep. 2024 - Jun. 2025
+          - list [ref=e66]:
+            - listitem [ref=e67]: Studied precast frame–shear wall design and durability using ICCP technology and TRC formwork; awarded Outstanding Undergraduate Thesis.
+        - article [ref=e68]:
+          - heading [level=3] [ref=e69]:
+            - link "Provincial Carbon Neutrality Assessment" [ref=e70] [cursor=pointer]:
+              - /url: projects/carbon-neutrality-prediction/index.html
+          - generic [ref=e71]:
+            - generic [ref=e72]: Project Lead · Machine Learning Study
+            - generic [ref=e73]: Jul. 2023 - Nov. 2023
+          - list [ref=e74]:
+            - listitem [ref=e75]: Led a machine learning study to assess and predict carbon neutrality potential across China's provinces.
+        - article [ref=e76]:
+          - heading [level=3] [ref=e77]:
+            - link "Dual-Protection ICCP–TRC Structural System" [ref=e78] [cursor=pointer]:
+              - /url: projects/iccp-trc-dual-protection/index.html
+          - generic [ref=e79]:
+            - generic [ref=e80]: Project Lead · National Undergraduate Innovation Project, RMB 15,000
+            - generic [ref=e81]: Apr. 2022 - Apr. 2024
+          - list [ref=e82]:
+            - listitem [ref=e83]: Led a nationally funded undergraduate project combining ICCP and permanent TRC formwork for structural protection.
+        - article [ref=e84]:
+          - heading [level=3] [ref=e85]:
+            - link "LaTeX-in-ICM&MCM" [ref=e86] [cursor=pointer]:
+              - /url: projects/latex-in-icm-mcm/index.html
+          - generic [ref=e87]: Developer · Open Source
+          - list [ref=e89]:
+            - listitem [ref=e90]: Developed a LaTeX template for MCM/ICM reports and curated mathematical modeling resources.
+        - article [ref=e91]:
+          - heading [level=3] [ref=e92]:
+            - link "PKU Computing Skills Handbook" [ref=e93] [cursor=pointer]:
+              - /url: projects/computing-skills-handbook/index.html
+          - generic [ref=e94]: Contributing Author · Open Source
+          - list [ref=e96]:
+            - listitem [ref=e97]: Contributed writing, corrections, and supplementary material to an introductory computing handbook.
+      - generic [ref=e98]:
+        - heading "WORK EXPERIENCE View all work experience" [level=2] [ref=e99]:
+          - generic [ref=e100]: WORK EXPERIENCE
+          - link "View all work experience" [ref=e101] [cursor=pointer]:
+            - /url: work-experience/index.html
+            - text: View all →
+        - paragraph [ref=e102]: No work experience listed.
+      - generic [ref=e103]:
+        - heading "HONORS AND AWARDS View all honors and awards" [level=2] [ref=e104]:
+          - generic [ref=e105]: HONORS AND AWARDS
+          - link "View all honors and awards" [ref=e106] [cursor=pointer]:
+            - /url: honors-and-awards/index.html
+            - text: View all →
+        - heading "HONORS:" [level=3] [ref=e107]
+        - list [ref=e108]:
+          - listitem [ref=e109]:
+            - generic [ref=e110]:
+              - generic [ref=e111]: CUMT Graduate First-Class Scholarship (10/384)
+              - generic [ref=e112]: Nov. 2026
+          - listitem [ref=e113]:
+            - generic [ref=e114]:
+              - generic [ref=e115]: CUMT Outstanding Graduate Student (15/322 selected)
+              - generic [ref=e116]: Nov. 2026
+          - listitem [ref=e117]:
+            - generic [ref=e118]:
+              - generic [ref=e119]: CUMT First-Class Scholarship for Incoming Graduate Students
+              - generic [ref=e120]: Nov. 2025
+          - listitem [ref=e121]:
+            - generic [ref=e122]:
+              - generic [ref=e123]: Xiaomi First-Class Scholarship (1/419)
+              - generic [ref=e124]: Nov. 2024
+          - listitem [ref=e125]:
+            - generic [ref=e126]:
+              - generic [ref=e127]: CUMT First-Class Scholarship (3/48)
+              - generic [ref=e128]: Nov. 2024
+        - heading "AWARDS:" [level=3] [ref=e129]
+        - list [ref=e130]:
+          - listitem [ref=e131]:
+            - generic [ref=e132]:
+              - generic [ref=e133]: Grand Prize, CSEE Cup Electrical Mathematical Modeling Competition (17th of 11,395 teams; team leader)
+              - generic [ref=e134]: Jul. 2026
+          - listitem [ref=e135]:
+            - generic [ref=e136]:
+              - generic [ref=e137]: Second Prize, Jiangsu Engineering Management Innovation, Entrepreneurship and Practice Competition (team leader)
+              - generic [ref=e138]: Nov. 2025
+          - listitem [ref=e139]:
+            - generic [ref=e140]:
+              - generic [ref=e141]: Third Prize, CSEE Cup Electrical Mathematical Modeling Competition (team leader)
+              - generic [ref=e142]: Aug. 2024
+          - listitem [ref=e143]:
+            - generic [ref=e144]:
+              - generic [ref=e145]: Second and Third Prizes, Jiangsu Energy Conservation and Emission Reduction Competition
+              - generic [ref=e146]: May 2024
+          - listitem [ref=e147]:
+            - generic [ref=e148]:
+              - generic [ref=e149]: First Prize, Jiangsu Engineering Management Innovation, Entrepreneurship and Practice Competition (ranked 1st; team leader)
+              - generic [ref=e150]: Nov. 2023
+      - generic [ref=e151]:
+        - heading "PUBLICATIONS View all publications" [level=2] [ref=e152]:
+          - generic [ref=e153]: PUBLICATIONS
+          - link "View all publications" [ref=e154] [cursor=pointer]:
+            - /url: publications/index.html
+            - text: View all →
+        - article [ref=e155]:
+          - heading [level=3] [ref=e156]:
+            - link "Bending and durability performance of TRC permanent formwork under chloride corrosion and impressed current" [ref=e157] [cursor=pointer]:
+              - /url: https://doi.org/10.1016/j.conbuildmat.2025.141800
+          - paragraph [ref=e158]:
+            - text: Shichang Li,
+            - strong [ref=e159]: Tianhao Qin
+            - text: ", Shiping Yin, Farhad Aslani"
+          - paragraph [ref=e160]:
+            - strong [ref=e161]: Construction and Building Materials, 484, 141800
+            - text: ", 2025."
+        - article [ref=e162]:
+          - heading [level=3] [ref=e163]:
+            - link "Experimental study on the effect of grouting volume on the tensile performance of offset semi-grouted couplers" [ref=e164] [cursor=pointer]:
+              - /url: https://doi.org/10.1016/j.conbuildmat.2022.128781
+          - paragraph [ref=e165]:
+            - text: Fenfang Yin, Shiping Yin,
+            - strong [ref=e166]: Tianhao Qin
+            - text: ", Boxue Wang, Linglei Zhang, Ning Yang"
+          - paragraph [ref=e167]:
+            - strong [ref=e168]: Construction and Building Materials, 351, 128781
+            - text: ", 2022."
+      - generic [ref=e169]:
+        - heading "EXTRACURRICULAR ACTIVITIES View all extracurricular activities" [level=2] [ref=e170]:
+          - generic [ref=e171]: EXTRACURRICULAR ACTIVITIES
+          - link "View all extracurricular activities" [ref=e172] [cursor=pointer]:
+            - /url: extracurricular-activities/index.html
+            - text: View all →
+        - list [ref=e173]:
+          - listitem [ref=e174]:
+            - generic [ref=e175]:
+              - generic [ref=e176]:
+                - strong [ref=e177]: Team Leader
+                - text: in CSEE Cup Electrical Mathematical Modeling Competition
+              - generic [ref=e178]: Aug. 2024; Jul. 2026
+          - listitem [ref=e179]:
+            - generic [ref=e180]:
+              - generic [ref=e181]:
+                - strong [ref=e182]: Team Leader
+                - text: in University Physics Competition
+              - generic [ref=e183]: Jan. 2023
+      - generic [ref=e184]:
+        - heading "NOTES View all notes" [level=2] [ref=e185]:
+          - generic [ref=e186]: NOTES
+          - link "View all notes" [ref=e187] [cursor=pointer]:
+            - /url: notes/index.html
+            - text: View all →
+        - generic [ref=e188]:
+          - article [ref=e189]:
+            - generic [ref=e190]:
+              - heading [level=3] [ref=e191]:
+                - link "Images and Math Test" [ref=e192] [cursor=pointer]:
+                  - /url: notes/media-math-test/index.html
+              - time [ref=e193]: 2026-10-14
+          - article [ref=e194]:
+            - generic [ref=e195]:
+              - heading [level=3] [ref=e196]:
+                - link "Writing a New Note" [ref=e197] [cursor=pointer]:
+                  - /url: notes/writing-a-note/index.html
+              - time [ref=e198]: 2026-10-14
+    - contentinfo [ref=e199]:
+      - generic [ref=e200]:
+        - link "Tianhao Qin" [ref=e201] [cursor=pointer]:
+          - /url: index.html
+        - text: ·
+        - link "CC BY-SA 4.0" [ref=e202] [cursor=pointer]:
+          - /url: https://creativecommons.org/licenses/by-sa/4.0/deed.en
+      - link "Back to top" [ref=e203] [cursor=pointer]:
+        - /url: "#top"
+        - text: Back to top ↑

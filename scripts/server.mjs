@@ -20,7 +20,7 @@ const scheduleBuild = () => {
   clearTimeout(timer);
   timer = setTimeout(() => { try { build(); } catch (error) { console.error(error.message); } }, 150);
 };
-const watchers = ['src', 'notes', 'assets', 'assets/images', 'content', 'content/projects', 'content/work-experience', 'content/extracurricular-activities'].map(directory => watch(path.join(root, directory), scheduleBuild));
+const watchers = ['src', 'notes', 'assets', 'assets/images', 'content', 'content/projects', 'content/open-source-projects', 'content/work-experience', 'content/extracurricular-activities'].map(directory => watch(path.join(root, directory), scheduleBuild));
 
 const server = http.createServer(async (request, response) => {
   if (!['GET', 'HEAD'].includes(request.method)) { response.writeHead(405, { Allow: 'GET, HEAD' }); response.end(); return; }

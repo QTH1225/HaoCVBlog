@@ -27,10 +27,10 @@ function validateRecords(records, category) {
 }
 
 function buildSite(content, notes) {
-  const { profile, homeOrder, education, skills, projects, workExperience, activities, honors, awards, publications } = content;
+  const { profile, homeOrder, education, skills, projects, openSourceProjects, workExperience, activities, scholarships, honors, awards, publications } = content;
   const t = labels;
   const addPage = (route, html) => allPages.set(route, html);
-  for (const [category, records] of Object.entries({ projects, workExperience, activities, publications })) validateRecords(records, category);
+  for (const [category, records] of Object.entries({ projects, openSourceProjects, workExperience, activities, publications })) validateRecords(records, category);
 
   function relativeLink(page, target = 'index.html') {
     return path.posix.relative(path.posix.dirname(page), target) || 'index.html';
@@ -99,10 +99,12 @@ function buildSite(content, notes) {
     if (!activities.length) return `<p class="empty">${escape(t.emptyActivities)}</p>`;
     return `<ul class="resume-list activities-preview">${activities.map(item => `<li><div class="activity-row"><span class="activity-description"><strong>${escape(item.role)}</strong> in ${escape(item.organization)}</span><span class="dates">${escape(item.dates)}</span></div></li>`).join('')}</ul>`;
   }
-  function awardsContent(honorItems = honors, awardItems = awards) {
-    if (!honorItems.length && !awardItems.length) return `<p class="empty">${escape(t.hiddenDetails)}</p>`;
+  function awardsContent(scholarshipItems = scholarships, honorItems = honors, awardItems = awards) {
+    if (!scholarshipItems.length && !honorItems.length && !awardItems.length) return `<p class="empty">${escape(t.hiddenDetails)}</p>`;
     const list = items => `<ul class="resume-list award-list">${items.map(([name, date]) => `<li><div class="award-row"><span class="award-name">${escape(name)}</span><span class="dates">${escape(date)}</span></div></li>`).join('')}</ul>`;
-    return `${honorItems.length ? `<h3 class="minor-heading">${escape(t.honorsLabel)}</h3>${list(honorItems)}` : ''}${awardItems.length ? `<h3 class="minor-heading">${escape(t.awardsLabel)}</h3>${list(awardItems)}` : ''}`;
+    return [[t.scholarshipsLabel, scholarshipItems], [t.honorsLabel, honorItems], [t.awardsLabel, awardItems]]
+      .filter(([, items]) => items.length)
+      .map(([label, items]) => `<h3 class="minor-heading">${escape(label)}</h3>${list(items)}`).join('');
   }
   const publicationAuthors = item => item.authorsHtml;
   const publicationVenue = item => `<p class="publication-venue"><strong>${escape(item.journal)}</strong>, ${escape(item.year)}.</p>`;
@@ -122,8 +124,9 @@ function buildSite(content, notes) {
     education: `<section data-home-section="education">${heading(t.education)}${educationContent()}</section>`,
     skills: `<section data-home-section="skills" class="skills">${heading(t.skills)}${skills.map(([label, value]) => `<p><strong>${escape(label)}:</strong> ${escape(value).replace('LaTeX', '<span class="latex" aria-label="LaTeX">L<span class="a">A</span>T<span class="e">E</span>X</span>')}</p>`).join('')}</section>`,
     projects: `<section data-home-section="projects">${heading(t.projects, home, 'projects/index.html')}${projects.map(item => recordContent(item, home, 'projects')).join('') || `<p class="empty">${escape(t.emptyProjects)}</p>`}</section>`,
+    'open-source-projects': `<section data-home-section="open-source-projects">${heading(t.openSourceProjects, home, 'open-source-projects/index.html')}${openSourceProjects.map(item => recordContent(item, home, 'open-source-projects')).join('') || `<p class="empty">${escape(t.emptyProjects)}</p>`}</section>`,
     'work-experience': `<section data-home-section="work-experience">${heading(t.work, home, 'work-experience/index.html')}${workExperience.map(item => recordContent(item, home, 'work-experience')).join('') || `<p class="empty">${escape(t.emptyWork)}</p>`}</section>`,
-    'honors-and-awards': `<section data-home-section="honors-and-awards">${heading(t.awards, home, 'honors-and-awards/index.html')}${awardsContent(honors.slice(0, 5), awards.slice(0, 5))}</section>`,
+    'honors-and-awards': `<section data-home-section="honors-and-awards">${heading(t.awards, home, 'honors-and-awards/index.html')}${awardsContent(scholarships.slice(0, 3), honors.slice(0, 3), awards.slice(0, 3))}</section>`,
     publications: `<section data-home-section="publications">${heading(t.publications, home, 'publications/index.html')}${publicationContent(home)}</section>`,
     'extracurricular-activities': `<section data-home-section="extracurricular-activities">${heading(t.activities, home, 'extracurricular-activities/index.html')}${activityPreview()}</section>`,
     notes: `<section data-home-section="notes" class="resume-notes">${heading(t.notes, home, 'notes/index.html')}${noteList(home, notes.slice(0, 5))}</section>`,
@@ -132,6 +135,7 @@ function buildSite(content, notes) {
 
   for (const [category, label, active, records, empty, detailLabel] of [
     ['projects', t.projectList, 'projects', projects, t.emptyProjects, t.projectNotes],
+    ['open-source-projects', t.openSourceProjects, 'open-source-projects', openSourceProjects, t.emptyProjects, t.projectNotes],
     ['work-experience', t.work, 'work', workExperience, t.emptyWork, t.experienceDetails],
     ['extracurricular-activities', t.activities, 'activities', activities, t.emptyActivities, t.activityDetails],
   ]) {

@@ -1,16 +1,15 @@
-## University (name withheld)
+## China University of Mining and Technology
 
-location: Location withheld
-degree: Structural Engineering
-dates: 09 2025 - Present
+location: Xuzhou, China
+degree: Master's Student
+dates: Sep. 2025 - Present
 
-## University (name withheld)
+## China University of Mining and Technology
 
-location: Location withheld
-degree: Bachelor of Civil Engineering
-dates: 09 2021 - 06 2025
+location: Xuzhou, China
+degree: Bachelor's Degree in Civil Engineering
+dates: Sep. 2021 - Jun. 2025
 
 ### Courses
 
-- Mechanics: Theoretical Mechanics, Mechanics of Materials, Structural Mechanics, Soil Mechanics
-- Professional: Principle of Structural Design, Reinforced Concrete Structure, Steel and Composite Construction
+- Selected courses: Reinforced Concrete Design (96/100), Soil Mechanics (94/100), Construction Methods (94/100), Principles of Structural Design I (93/100)

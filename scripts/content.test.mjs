@@ -37,8 +37,9 @@ test('homepage section order accepts moving complete Markdown list lines', async
   assert.deepEqual(parseHomeOrder('\uFEFF' + reordered.map(id => `- ${id}`).join('\r\n\r\n')), reordered);
   assert.throws(() => parseHomeOrder(source + '\n- skills'), /content\/home.md: Duplicate homepage section "skills"/);
   assert.throws(() => parseHomeOrder(source.replace('- skills', '- skill')), /content\/home.md: Unknown homepage section "skill"/);
-  assert.throws(() => parseHomeOrder(source.replace('- skills', '')), /content\/home.md: Missing homepage sections: skills/);
-  assert.throws(() => parseHomeOrder(''), /Missing homepage sections/);
+  assert.deepEqual(parseHomeOrder(source.replace('- skills', '')), current.filter(id => id !== 'skills'));
+  assert.deepEqual(parseHomeOrder(''), []);
+  assert.deepEqual(parseHomeOrder('- open-source-projects'), ['open-source-projects']);
   assert.throws(() => parseHomeOrder(source.replace('- skills', '  - skills')), /Line \d+: use one section per line/);
 });
 
@@ -69,9 +70,15 @@ test('education and skills preserve the résumé fields and course groups', () =
 });
 
 test('award tables accept escaped pipes and reject missing dates', () => {
-  assert.deepEqual(parseAwards('## Honors\n\n| Name | Date |\n| --- | --- |\n| Research \\| Engineering Award | 2026 |'), { honors: [['Research | Engineering Award', '2026']], awards: [] });
-  assert.throws(() => parseAwards('## Awards\n\n| Name | Date |\n| --- | --- |\n| Award | |'), /name and a date/);
-  assert.throws(() => parseAwards('## Other\n\nText'), /Honors and/);
+  const table = row => `| Name | Date |\n| --- | --- |\n${row}`;
+  assert.deepEqual(parseAwards('## Honors\n\n' + table('| Research \\| Engineering Award | 2026 |')), { scholarships: [], honors: [['Research | Engineering Award', '2026']], awards: [] });
+  assert.deepEqual(parseAwards('## Scholarships\n\n' + table('| Scholarship (RMB 6,500) | 2026 |') + '\n\n## Honors\n\n' + table('| Outstanding Thesis | 2025 |') + '\n\n## Competition Awards\n\n' + table('| Grand Prize | 2026 |')), {
+    scholarships: [['Scholarship (RMB 6,500)', '2026']], honors: [['Outstanding Thesis', '2025']], awards: [['Grand Prize', '2026']],
+  });
+  assert.deepEqual(parseAwards('## Awards\n\n' + table('| Legacy Award | 2026 |')).awards, [['Legacy Award', '2026']]);
+  assert.throws(() => parseAwards('## Awards\n\n' + table('| Award | |')), /name and a date/);
+  assert.throws(() => parseAwards('## Other\n\nText'), /Scholarships.*Honors.*Competition Awards/);
+  assert.throws(() => parseAwards('## Awards\n\n' + table('| Award | 2026 |') + '\n\n## Competition Awards\n\n' + table('| Duplicate | 2026 |')), /Use each heading once/);
 });
 
 test('publication authors support bold Markdown while escaping HTML', () => {
@@ -125,7 +132,7 @@ test('adding, editing, ordering and removing Markdown records needs no code chan
   const base = path.resolve(tmpdir());
   const directory = await mkdtemp(path.join(base, 'cvblog-content-'));
   try {
-    for (const category of ['projects', 'work-experience', 'extracurricular-activities']) await mkdir(path.join(directory, category));
+    for (const category of ['projects', 'open-source-projects', 'work-experience', 'extracurricular-activities']) await mkdir(path.join(directory, category));
     for (const file of ['education.md', 'skills.md', 'honors-and-awards.md', 'publications.md']) await writeFile(path.join(directory, file), '');
     await writeFile(path.join(directory, 'profile.md'), '---\nname: Anonymous\n---');
     await cp(path.join(root, 'content/home.md'), path.join(directory, 'home.md'));
@@ -134,6 +141,10 @@ test('adding, editing, ordering and removing Markdown records needs no code chan
     const second = path.join(directory, 'projects/second.md');
     await writeFile(first, make('First', 20));
     await writeFile(second, make('Second', 10));
+    await writeFile(path.join(directory, 'open-source-projects/first.md'), make('Open-source project', 1));
+    const separated = await loadSiteContent(directory);
+    assert.deepEqual(separated.openSourceProjects.map(item => [item.id, item.title]), [['first', 'Open-source project']]);
+    assert.equal(separated.projects.find(item => item.id === 'first').title, 'First');
     assert.deepEqual((await loadSiteContent(directory)).projects.map(item => item.id), ['second', 'first']);
     await writeFile(first, make('Updated title', 1));
     assert.equal((await loadSiteContent(directory)).projects[0].title, 'Updated title');
@@ -159,9 +170,31 @@ test('real builds follow home.md order and reject errors without replacing the l
     const check = () => run(process.execPath, [path.join(directory, 'scripts/check.mjs')], { cwd: directory });
     const readHome = () => readFile(path.join(directory, 'dist/index.html'), 'utf8');
     const sectionOrder = html => [...html.matchAll(/<section data-home-section="([^"]+)"/g)].map(match => match[1]);
+    const record = title => `---\ntitle: ${title}\n---\n## Summary\n- Collection isolation fixture.\n## DETAILS\nCollection details.`;
+    await writeFile(path.join(directory, 'content/projects/split-test.md'), record('Research isolation fixture'));
+    await writeFile(path.join(directory, 'content/open-source-projects/split-test.md'), record('Open-source isolation fixture'));
+    const awardGroups = ['Scholarships', 'Honors', 'Competition Awards'];
+    await writeFile(path.join(directory, 'content/honors-and-awards.md'), awardGroups.map(group => `## ${group}\n\n| Name | Date |\n| --- | --- |\n${Array.from({ length: 4 }, (_, index) => `| ${group} fixture ${index + 1} | 2026 |`).join('\n')}`).join('\n\n'));
     await build();
     await check();
     assert.deepEqual(sectionOrder(await readHome()), parseHomeOrder(original));
+    const fullAwards = await readFile(path.join(directory, 'dist/honors-and-awards/index.html'), 'utf8');
+    const homeAwards = await readHome();
+    for (const group of awardGroups) {
+      assert.match(fullAwards, new RegExp(`<h3 class="minor-heading">${group.toUpperCase()}:</h3>`));
+      assert.match(homeAwards, new RegExp(`${group} fixture 3`));
+      assert.doesNotMatch(homeAwards, new RegExp(`${group} fixture 4`));
+      assert.match(fullAwards, new RegExp(`${group} fixture 4`));
+    }
+    assert.equal([...fullAwards.matchAll(/class="award-row"/g)].length, 12);
+    const researchPage = await readFile(path.join(directory, 'dist/projects/index.html'), 'utf8');
+    const openSourcePage = await readFile(path.join(directory, 'dist/open-source-projects/index.html'), 'utf8');
+    assert.match(researchPage, /Research isolation fixture/);
+    assert.doesNotMatch(researchPage, /Open-source isolation fixture/);
+    assert.match(openSourcePage, /Open-source isolation fixture/);
+    assert.doesNotMatch(openSourcePage, /Research isolation fixture/);
+    assert.match(await readFile(path.join(directory, 'dist/projects/split-test/index.html'), 'utf8'), /Back to research projects/);
+    assert.match(await readFile(path.join(directory, 'dist/open-source-projects/split-test/index.html'), 'utf8'), /Back to open source projects/);
     const category = await readFile(path.join(directory, 'dist/projects/index.html'), 'utf8');
     const profileFile = path.join(directory, 'content/profile.md');
     await writeFile(profileFile, (await readFile(profileFile, 'utf8')) + '\n## Contacts\n\n- [LinkedIn](https://www.linkedin.com/)\n');
@@ -178,12 +211,25 @@ test('real builds follow home.md order and reject errors without replacing the l
     for (const [source, error] of [
       [original + '\n- skills', /Duplicate homepage section/],
       [original.replace('- skills', '- skill'), /Unknown homepage section/],
-      [original.replace('- skills', ''), /Missing homepage sections/],
+      [original.replace('- skills', '  - skills'), /Line \d+: use one section per line/],
     ]) {
       await writeFile(homeFile, source);
       await assert.rejects(build(), error);
       assert.equal(await readHome(), workingHome);
     }
+    const reduced = reordered.filter(id => !['skills', 'projects', 'open-source-projects', 'notes'].includes(id));
+    await writeFile(homeFile, reduced.map(id => `- ${id}`).join('\n'));
+    await build();
+    await check();
+    const reducedHome = await readHome();
+    assert.deepEqual(sectionOrder(reducedHome), reduced);
+    assert.doesNotMatch(reducedHome, /data-home-section="(?:skills|projects|open-source-projects|notes)"/);
+    assert.match(await readFile(path.join(directory, 'dist/open-source-projects/index.html'), 'utf8'), /Open-source isolation fixture/);
+    const restored = ['work-experience', 'extracurricular-activities', ...reduced.filter(id => !['work-experience', 'extracurricular-activities'].includes(id))];
+    await writeFile(homeFile, restored.map(id => `- ${id}`).join('\n'));
+    await build();
+    await check();
+    assert.deepEqual(sectionOrder(await readHome()), restored);
   } finally {
     if (!directory.startsWith(base + path.sep) || !path.basename(directory).startsWith('cvblog-home-')) throw new Error('Unsafe test cleanup path');
     await rm(directory, { recursive: true, force: true });

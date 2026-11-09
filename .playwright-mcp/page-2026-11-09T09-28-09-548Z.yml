@@ -1,0 +1,152 @@
+- generic [active] [ref=f15e1]:
+  - link "Skip to content" [ref=f15e2] [cursor=pointer]:
+    - /url: "#main"
+  - generic [ref=f15e3]:
+    - banner [ref=f15e4]:
+      - heading [level=1] [ref=f15e5]:
+        - link "Tianhao Qin, back to résumé" [ref=f15e6] [cursor=pointer]:
+          - /url: ../index.html
+          - text: Tianhao Qin
+      - generic "Contact information" [ref=f15e7]:
+        - generic [ref=f15e8]:
+          - link "tianhaoqin@qq.com" [ref=f15e10] [cursor=pointer]:
+            - /url: mailto:tianhaoqin@qq.com
+          - generic [aria-hidden] [ref=f15e11]: "-"
+          - link "tianhao.blog" [ref=f15e13] [cursor=pointer]:
+            - /url: https://tianhao.blog/
+          - generic [aria-hidden] [ref=f15e14]: "-"
+          - link "GitHub" [ref=f15e16] [cursor=pointer]:
+            - /url: https://github.com/QTH1225
+    - main [ref=f15e17]:
+      - navigation "Breadcrumb" [ref=f15e18]:
+        - link "Resume" [ref=f15e19] [cursor=pointer]:
+          - /url: ../index.html
+        - text: /Honors and Awards
+      - generic [ref=f15e20]:
+        - heading "HONORS AND AWARDS Back to résumé" [level=2] [ref=f15e21]:
+          - generic [ref=f15e22]: HONORS AND AWARDS
+          - link "Back to résumé" [ref=f15e23] [cursor=pointer]:
+            - /url: ../index.html
+            - text: ← Back to résumé
+        - heading "HONORS:" [level=3] [ref=f15e24]
+        - list [ref=f15e25]:
+          - listitem [ref=f15e26]:
+            - generic [ref=f15e27]:
+              - generic [ref=f15e28]: CUMT Graduate First-Class Scholarship (10/384; RMB 6,500)
+              - generic [ref=f15e29]: Nov. 2026
+          - listitem [ref=f15e30]:
+            - generic [ref=f15e31]:
+              - generic [ref=f15e32]: CUMT Outstanding Graduate Student (15/322 selected)
+              - generic [ref=f15e33]: Nov. 2026
+          - listitem [ref=f15e34]:
+            - generic [ref=f15e35]:
+              - generic [ref=f15e36]: CUMT First-Class Scholarship for Incoming Graduate Students (RMB 8,000)
+              - generic [ref=f15e37]: Nov. 2025
+          - listitem [ref=f15e38]:
+            - generic [ref=f15e39]:
+              - generic [ref=f15e40]: Xiaomi First-Class Scholarship (1/419; RMB 5,000)
+              - generic [ref=f15e41]: Nov. 2024
+          - listitem [ref=f15e42]:
+            - generic [ref=f15e43]:
+              - generic [ref=f15e44]: CUMT First-Class Scholarship (3/48; RMB 4,000)
+              - generic [ref=f15e45]: Nov. 2024
+          - listitem [ref=f15e46]:
+            - generic [ref=f15e47]:
+              - generic [ref=f15e48]: Outstanding Communist Youth League Student Leader (School-level)
+              - generic [ref=f15e49]: Dec. 2024
+          - listitem [ref=f15e50]:
+            - generic [ref=f15e51]:
+              - generic [ref=f15e52]: Outstanding Student, CUMT
+              - generic [ref=f15e53]: Dec. 2024
+          - listitem [ref=f15e54]:
+            - generic [ref=f15e55]:
+              - generic [ref=f15e56]: Tongzhu Scholarship (RMB 2,000)
+              - generic [ref=f15e57]: Nov. 2024
+          - listitem [ref=f15e58]:
+            - generic [ref=f15e59]:
+              - generic [ref=f15e60]: Outstanding Volunteer (School-level)
+              - generic [ref=f15e61]: Mar. 2024
+          - listitem [ref=f15e62]:
+            - generic [ref=f15e63]:
+              - generic [ref=f15e64]: Pingmei Shenma First-Class Scholarship (5/419; RMB 3,000)
+              - generic [ref=f15e65]: Nov. 2023
+          - listitem [ref=f15e66]:
+            - generic [ref=f15e67]:
+              - generic [ref=f15e68]: Outstanding Student (School-level)
+              - generic [ref=f15e69]: Nov. 2023
+          - listitem [ref=f15e70]:
+            - generic [ref=f15e71]:
+              - generic [ref=f15e72]: CUMT Second-Class Scholarship (Top 15%; RMB 2,000 each year)
+              - generic [ref=f15e73]: Nov. 2022, 2023
+          - listitem [ref=f15e74]:
+            - generic [ref=f15e75]:
+              - generic [ref=f15e76]: Outstanding Individual in Social Practice, CUMT
+              - generic [ref=f15e77]: Mar. 2023
+          - listitem [ref=f15e78]:
+            - generic [ref=f15e79]:
+              - generic [ref=f15e80]: Outstanding Student Leader (School-level)
+              - generic [ref=f15e81]: Dec. 2022
+          - listitem [ref=f15e82]:
+            - generic [ref=f15e83]:
+              - generic [ref=f15e84]: Outstanding Communist Youth League Member, CUMT
+              - generic [ref=f15e85]: May 2022
+        - heading "AWARDS:" [level=3] [ref=f15e86]
+        - list [ref=f15e87]:
+          - listitem [ref=f15e88]:
+            - generic [ref=f15e89]:
+              - generic [ref=f15e90]: Grand Prize, CSEE Cup Electrical Mathematical Modeling Competition (17th of 11,395 teams; Top 0.15%; team leader)
+              - generic [ref=f15e91]: Jul. 2026
+          - listitem [ref=f15e92]:
+            - generic [ref=f15e93]:
+              - generic [ref=f15e94]: Second Prize, Jiangsu Engineering Management Innovation, Entrepreneurship and Practice Competition (team leader)
+              - generic [ref=f15e95]: Nov. 2025
+          - listitem [ref=f15e96]:
+            - generic [ref=f15e97]:
+              - generic [ref=f15e98]: Outstanding Undergraduate Thesis, CUMT (individual project)
+              - generic [ref=f15e99]: Jun. 2025
+          - listitem [ref=f15e100]:
+            - generic [ref=f15e101]:
+              - generic [ref=f15e102]: Third Prize, CSEE Cup Electrical Mathematical Modeling Competition (team leader)
+              - generic [ref=f15e103]: Aug. 2024
+          - listitem [ref=f15e104]:
+            - generic [ref=f15e105]:
+              - generic [ref=f15e106]: Second Prize, May Day Mathematical Modeling Competition (team leader)
+              - generic [ref=f15e107]: Jun. 2024
+          - listitem [ref=f15e108]:
+            - generic [ref=f15e109]:
+              - generic [ref=f15e110]: Second and Third Prizes, Jiangsu Energy Conservation and Emission Reduction Competition (team leader / deputy lead)
+              - generic [ref=f15e111]: May 2024
+          - listitem [ref=f15e112]:
+            - generic [ref=f15e113]:
+              - generic [ref=f15e114]: Third Prize, MathorCup Mathematical Modeling Competition (team leader)
+              - generic [ref=f15e115]: Apr. 2024
+          - listitem [ref=f15e116]:
+            - generic [ref=f15e117]:
+              - generic [ref=f15e118]: First Prize, Jiangsu Engineering Management Innovation, Entrepreneurship and Practice Competition (ranked 1st; team leader)
+              - generic [ref=f15e119]: Nov. 2023
+          - listitem [ref=f15e120]:
+            - generic [ref=f15e121]:
+              - generic [ref=f15e122]: Third Prize, China Undergraduate Mathematical Contest in Modeling, Jiangsu Division (team leader)
+              - generic [ref=f15e123]: Nov. 2023
+          - listitem [ref=f15e124]:
+            - generic [ref=f15e125]:
+              - generic [ref=f15e126]: Silver Medal, University Physics Competition (team leader)
+              - generic [ref=f15e127]: Jan. 2023
+          - listitem [ref=f15e128]:
+            - generic [ref=f15e129]:
+              - generic [ref=f15e130]: Second Prize, Asia and Pacific Mathematical Contest in Modeling (team leader)
+              - generic [ref=f15e131]: Jan. 2023
+          - listitem [ref=f15e132]:
+            - generic [ref=f15e133]:
+              - generic [ref=f15e134]: Second Prize, Jiangsu Mechanics Innovation and Creativity Competition (team leader)
+              - generic [ref=f15e135]: Dec. 2022
+    - contentinfo [ref=f15e136]:
+      - generic [ref=f15e137]:
+        - link "Tianhao Qin" [ref=f15e138] [cursor=pointer]:
+          - /url: ../index.html
+        - text: ·
+        - link "CC BY-SA 4.0" [ref=f15e139] [cursor=pointer]:
+          - /url: https://creativecommons.org/licenses/by-sa/4.0/deed.en
+      - link "Back to top" [ref=f15e140] [cursor=pointer]:
+        - /url: "#top"
+        - text: Back to top ↑
