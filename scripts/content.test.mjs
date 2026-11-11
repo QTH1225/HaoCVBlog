@@ -173,6 +173,9 @@ test('real builds follow home.md order and reject errors without replacing the l
     const record = title => `---\ntitle: ${title}\n---\n## Summary\n- Collection isolation fixture.\n## DETAILS\nCollection details.`;
     await writeFile(path.join(directory, 'content/projects/split-test.md'), record('Research isolation fixture'));
     await writeFile(path.join(directory, 'content/open-source-projects/split-test.md'), record('Open-source isolation fixture'));
+    for (let index = 1; index <= 4; index++) {
+      await writeFile(path.join(directory, `content/open-source-projects/preview-limit-${index}.md`), record(`Open-source preview fixture ${index}`));
+    }
     const awardGroups = ['Scholarships', 'Honors', 'Competition Awards'];
     await writeFile(path.join(directory, 'content/honors-and-awards.md'), awardGroups.map(group => `## ${group}\n\n| Name | Date |\n| --- | --- |\n${Array.from({ length: 4 }, (_, index) => `| ${group} fixture ${index + 1} | 2026 |`).join('\n')}`).join('\n\n'));
     await build();
@@ -189,6 +192,13 @@ test('real builds follow home.md order and reject errors without replacing the l
     assert.equal([...fullAwards.matchAll(/class="award-row"/g)].length, 12);
     const researchPage = await readFile(path.join(directory, 'dist/projects/index.html'), 'utf8');
     const openSourcePage = await readFile(path.join(directory, 'dist/open-source-projects/index.html'), 'utf8');
+    for (const category of ['projects', 'open-source-projects']) {
+      const preview = homeAwards.match(new RegExp(`<section data-home-section="${category}">([\\s\\S]*?)</section>`))?.[1];
+      assert.equal([...preview.matchAll(/<article class="entry">/g)].length, 3);
+    }
+    for (let index = 1; index <= 4; index++) {
+      assert.match(openSourcePage, new RegExp(`Open-source preview fixture ${index}`));
+    }
     assert.match(researchPage, /Research isolation fixture/);
     assert.doesNotMatch(researchPage, /Open-source isolation fixture/);
     assert.match(openSourcePage, /Open-source isolation fixture/);

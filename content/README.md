@@ -43,6 +43,8 @@
 
 新增科研项目可复制 `templates/project.md` 到 `content/projects/my-project.md`，开源项目放到 `content/open-source-projects/my-project.md`；工作经历和活动分别有 `templates/work-experience.md`、`templates/activity.md`。模板不会自动出现在网站中，复制到对应内容目录才会生成页面。
 
+科研项目和开源项目的首页摘要均按 `order` 最多显示三项，View all 分类页保留各自的全部项目。
+
 文件名就是页面地址中的 id，使用小写英文、数字和连字符。网站统一使用英文，文档中的字段名请保留，字段值与正文可替换。
 
 图片都使用 `![Image description](assets/images/your-image.png)`。行内公式使用 `$...$`，独立公式使用 `$$...$$`。更多字段、完整格式及运行命令见根目录[中文说明](../README.zh-CN.md)或 [English README](../README.md)。

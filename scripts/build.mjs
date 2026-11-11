@@ -101,7 +101,8 @@ function buildSite(content, notes) {
   }
   function awardsContent(scholarshipItems = scholarships, honorItems = honors, awardItems = awards) {
     if (!scholarshipItems.length && !honorItems.length && !awardItems.length) return `<p class="empty">${escape(t.hiddenDetails)}</p>`;
-    const list = items => `<ul class="resume-list award-list">${items.map(([name, date]) => `<li><div class="award-row"><span class="award-name">${escape(name)}</span><span class="dates">${escape(date)}</span></div></li>`).join('')}</ul>`;
+    const awardName = name => escape(name).replace(/\([^()]*\)/g, details => `<span class="award-details">${details}</span>`);
+    const list = items => `<ul class="resume-list award-list">${items.map(([name, date]) => `<li><div class="award-row"><span class="award-name">${awardName(name)}</span><span class="dates">${escape(date)}</span></div></li>`).join('')}</ul>`;
     return [[t.scholarshipsLabel, scholarshipItems], [t.honorsLabel, honorItems], [t.awardsLabel, awardItems]]
       .filter(([, items]) => items.length)
       .map(([label, items]) => `<h3 class="minor-heading">${escape(label)}</h3>${list(items)}`).join('');
@@ -123,8 +124,8 @@ function buildSite(content, notes) {
   const homeContent = {
     education: `<section data-home-section="education">${heading(t.education)}${educationContent()}</section>`,
     skills: `<section data-home-section="skills" class="skills">${heading(t.skills)}${skills.map(([label, value]) => `<p><strong>${escape(label)}:</strong> ${escape(value).replace('LaTeX', '<span class="latex" aria-label="LaTeX">L<span class="a">A</span>T<span class="e">E</span>X</span>')}</p>`).join('')}</section>`,
-    projects: `<section data-home-section="projects">${heading(t.projects, home, 'projects/index.html')}${projects.map(item => recordContent(item, home, 'projects')).join('') || `<p class="empty">${escape(t.emptyProjects)}</p>`}</section>`,
-    'open-source-projects': `<section data-home-section="open-source-projects">${heading(t.openSourceProjects, home, 'open-source-projects/index.html')}${openSourceProjects.map(item => recordContent(item, home, 'open-source-projects')).join('') || `<p class="empty">${escape(t.emptyProjects)}</p>`}</section>`,
+    projects: `<section data-home-section="projects">${heading(t.projects, home, 'projects/index.html')}${projects.slice(0, 3).map(item => recordContent(item, home, 'projects')).join('') || `<p class="empty">${escape(t.emptyProjects)}</p>`}</section>`,
+    'open-source-projects': `<section data-home-section="open-source-projects">${heading(t.openSourceProjects, home, 'open-source-projects/index.html')}${openSourceProjects.slice(0, 3).map(item => recordContent(item, home, 'open-source-projects')).join('') || `<p class="empty">${escape(t.emptyProjects)}</p>`}</section>`,
     'work-experience': `<section data-home-section="work-experience">${heading(t.work, home, 'work-experience/index.html')}${workExperience.map(item => recordContent(item, home, 'work-experience')).join('') || `<p class="empty">${escape(t.emptyWork)}</p>`}</section>`,
     'honors-and-awards': `<section data-home-section="honors-and-awards">${heading(t.awards, home, 'honors-and-awards/index.html')}${awardsContent(scholarships.slice(0, 3), honors.slice(0, 3), awards.slice(0, 3))}</section>`,
     publications: `<section data-home-section="publications">${heading(t.publications, home, 'publications/index.html')}${publicationContent(home)}</section>`,
